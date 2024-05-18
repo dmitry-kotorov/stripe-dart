@@ -20,8 +20,14 @@ class Price extends Message {
   /// currency.
   final String currency;
 
+  //// Metadate
+  final Map<String, dynamic> metadata;
+
   /// The ID of the product this price is associated with.
   final String product;
+
+  /// The recurring components of a price such as interval
+  final Map<String, dynamic> recuring;
 
   /// One of one_time or recurring depending on whether the price is for a
   /// one-time purchase or a recurring (subscription) purchase.
@@ -39,6 +45,8 @@ class Price extends Message {
     required this.product,
     required this.type,
     required this.unitAmount,
+    required this.metadata,
+    required this.recuring,
   });
 
   factory Price.fromJson(Map<String, dynamic> json) => _$PriceFromJson(json);

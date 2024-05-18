@@ -550,6 +550,8 @@ Price _$PriceFromJson(Map<String, dynamic> json) => Price(
       product: json['product'] as String,
       type: $enumDecode(_$PriceTypeEnumMap, json['type']),
       unitAmount: (json['unit_amount'] as num).toInt(),
+      metadata: json['metadata'] as Map<String, dynamic>,
+      recuring: json['recuring'] as Map<String, dynamic>,
     );
 
 Map<String, dynamic> _$PriceToJson(Price instance) => <String, dynamic>{
@@ -557,7 +559,9 @@ Map<String, dynamic> _$PriceToJson(Price instance) => <String, dynamic>{
       'id': instance.id,
       'active': instance.active,
       'currency': instance.currency,
+      'metadata': instance.metadata,
       'product': instance.product,
+      'recuring': instance.recuring,
       'type': _$PriceTypeEnumMap[instance.type]!,
       'unit_amount': instance.unitAmount,
     };
