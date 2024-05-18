@@ -21,13 +21,13 @@ class Price extends Message {
   final String currency;
 
   //// Metadate
-  final Map<String, dynamic> metadata;
+  final Map<String, dynamic>? metadata;
 
   /// The ID of the product this price is associated with.
   final String product;
 
   /// The recurring components of a price such as interval
-  final Map<String, dynamic> recuring;
+  final Map<String, dynamic>? recuring;
 
   /// One of one_time or recurring depending on whether the price is for a
   /// one-time purchase or a recurring (subscription) purchase.

@@ -550,21 +550,31 @@ Price _$PriceFromJson(Map<String, dynamic> json) => Price(
       product: json['product'] as String,
       type: $enumDecode(_$PriceTypeEnumMap, json['type']),
       unitAmount: (json['unit_amount'] as num).toInt(),
-      metadata: json['metadata'] as Map<String, dynamic>,
-      recuring: json['recuring'] as Map<String, dynamic>,
+      metadata: json['metadata'] as Map<String, dynamic>?,
+      recuring: json['recuring'] as Map<String, dynamic>?,
     );
 
-Map<String, dynamic> _$PriceToJson(Price instance) => <String, dynamic>{
-      'object': _$_PriceObjectEnumMap[instance.object]!,
-      'id': instance.id,
-      'active': instance.active,
-      'currency': instance.currency,
-      'metadata': instance.metadata,
-      'product': instance.product,
-      'recuring': instance.recuring,
-      'type': _$PriceTypeEnumMap[instance.type]!,
-      'unit_amount': instance.unitAmount,
-    };
+Map<String, dynamic> _$PriceToJson(Price instance) {
+  final val = <String, dynamic>{
+    'object': _$_PriceObjectEnumMap[instance.object]!,
+    'id': instance.id,
+    'active': instance.active,
+    'currency': instance.currency,
+  };
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('metadata', instance.metadata);
+  val['product'] = instance.product;
+  writeNotNull('recuring', instance.recuring);
+  val['type'] = _$PriceTypeEnumMap[instance.type]!;
+  val['unit_amount'] = instance.unitAmount;
+  return val;
+}
 
 const _$_PriceObjectEnumMap = {
   _PriceObject.price: 'price',
