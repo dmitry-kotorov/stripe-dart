@@ -27,7 +27,7 @@ class Price extends Message {
   final String product;
 
   /// The recurring components of a price such as interval
-  final Map<String, dynamic>? recuring;
+  final Map<String, dynamic>? recurring;
 
   /// One of one_time or recurring depending on whether the price is for a
   /// one-time purchase or a recurring (subscription) purchase.
@@ -46,7 +46,7 @@ class Price extends Message {
     required this.type,
     required this.unitAmount,
     required this.metadata,
-    required this.recuring,
+    required this.recurring,
   });
 
   factory Price.fromJson(Map<String, dynamic> json) => _$PriceFromJson(json);
