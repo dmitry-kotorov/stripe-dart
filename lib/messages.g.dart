@@ -694,6 +694,7 @@ CreateCheckoutSessionRequest _$CreateCheckoutSessionRequestFromJson(
           ? null
           : SubscriptionData.fromJson(
               json['subscription_data'] as Map<String, dynamic>),
+      allowPromotionCodes: json['allow_promotion_codes'] as bool?,
     );
 
 Map<String, dynamic> _$CreateCheckoutSessionRequestToJson(
@@ -724,6 +725,7 @@ Map<String, dynamic> _$CreateCheckoutSessionRequestToJson(
   writeNotNull('tax_id_collection', instance.taxIdCollection?.toJson());
   writeNotNull('payment_intent_data', instance.paymentIntentData?.toJson());
   writeNotNull('subscription_data', instance.subscriptionData?.toJson());
+  writeNotNull('allow_promotion_codes', instance.allowPromotionCodes);
   return val;
 }
 

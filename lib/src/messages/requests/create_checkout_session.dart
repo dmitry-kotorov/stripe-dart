@@ -47,6 +47,10 @@ class CreateCheckoutSessionRequest {
   /// customer’s location and other characteristics.
   final List<PaymentMethodType> paymentMethodTypes;
 
+  /// Enables user redemption of promotion codes on the Checkout Session.
+  @JsonKey(name: 'allow_promotion_codes')
+  final bool? allowPromotionCodes;
+
   /// A unique string to reference the Checkout Session. This can be a customer
   /// ID, a cart ID, or similar, and can be used to reconcile the Session with
   /// your internal systems.
@@ -107,6 +111,7 @@ class CreateCheckoutSessionRequest {
     this.taxIdCollection,
     this.paymentIntentData,
     this.subscriptionData,
+    this.allowPromotionCodes,
   });
 
   factory CreateCheckoutSessionRequest.fromJson(Map<String, dynamic> json) =>
