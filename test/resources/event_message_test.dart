@@ -15,6 +15,15 @@ void main() {
       expect(message.data.object.email, 'e@test.com');
     });
   });
+
+  group('Event.fromJson', () {
+    test('returns CheckoutSessionEvent for checkout.session payload', () {
+      final message =
+          Event.fromJson(jsonDecode(checkoutSessionCompletedEventObject));
+
+      expect(message, isA<CheckoutSessionEvent>());
+    });
+  });
 }
 
 const eventObject = r'''
@@ -62,4 +71,20 @@ const eventObject = r'''
     "idempotency_key": null
   },
   "type": "customer.created"
+}''';
+
+const checkoutSessionCompletedEventObject = r'''
+{
+  "id": "evt_1ExampleCheckoutSession",
+  "object": "event",
+  "data": {
+    "object": {
+      "id": "cs_test_completed",
+      "object": "checkout.session",
+      "payment_method_types": [
+        "card"
+      ]
+    }
+  },
+  "type": "checkout.session.completed"
 }''';

@@ -23,8 +23,10 @@ abstract class Event<T extends Message> extends Message {
   });
 
   static T fromJson<T extends Event>(Map<String, dynamic> json) {
-    switch (
-        (json['data']['object']['object'] as String?)?.trim().toLowerCase()) {
+    final object =
+        (json['data']['object']['object'] as String?)?.trim().toLowerCase();
+
+    switch (object?.replaceAll('.', '_')) {
       // case 'balance_transaction':
       //   return BalanceTransactionEvent.fromJson(json) as T;
       case 'charge':
